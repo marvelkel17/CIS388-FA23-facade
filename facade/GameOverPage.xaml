@@ -1,14 +1,79 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="facade.GameOverPage"
-             Title="GameOverPage">
+             Title="#facade"
+             BackgroundColor="#333">
+
     <VerticalStackLayout>
-        <Label
-            x:Name="ResultLabel"
-            Text="{Binding Result}"
-            FontSize="Title"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid Padding="0" RowSpacing="80">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            
+            <Label
+                x:Name="ResultLabel"
+                Text="{Binding Result}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="60"
+                TextColor="White"
+                Grid.Row="1"/>
+            
+            
+            
+            <StackLayout ZIndex="1" Grid.Row="2" Orientation="Vertical">
+                <Label
+                    Text="Correct Answer:"
+                    FontSize="22"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    TextColor="White"
+                    Padding="4"/>
+
+                <Button
+                    Text="#facade"
+                    BackgroundColor="#facade"
+                    Padding="20"
+                    CornerRadius="10"
+                    TextColor="#000"
+                    WidthRequest="250"
+                    FontSize="36"
+                    IsEnabled="False"/>
+            </StackLayout>
+
+            
+
+            <Button
+                Grid.Row="3"
+                Text="New Game"
+                BackgroundColor="GhostWhite"
+                Padding="20"
+                CornerRadius="30"
+                TextColor="#000"
+                WidthRequest="250"
+                FontSize="30"
+                IsEnabled="False"
+                ZIndex="1"/>
+
+
+            <Button
+                Grid.Row="3"
+                Text=""
+                BackgroundColor="#444"
+                Padding="20"
+                CornerRadius="30"
+                WidthRequest="250"
+                FontSize="30"
+                IsEnabled="False"
+                TranslationY="5"
+                ZIndex="0"/>     
+        </Grid>
+        
+
     </VerticalStackLayout>
 </ContentPage>

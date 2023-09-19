@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="facade.YouWonPage"
+             Title="#facade"
+             BackgroundColor="#facade">
+
+    <VerticalStackLayout>
+        <Grid Padding="0" RowSpacing="80">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Label
+                Text="You Won!"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="60"
+                TextColor="#222"
+                Grid.Row="1"/>
+
+            <Label
+                Grid.Row="2"
+                Text="#facade"
+                TextColor="#222"
+                FontSize="48"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="End"/>
+
+
+
+            <Button
+                Grid.Row="4"
+                Text="New Game"
+                BackgroundColor="GhostWhite"
+                Padding="20"
+                CornerRadius="30"
+                TextColor="#000"
+                WidthRequest="250"
+                FontSize="30"
+                IsEnabled="False"
+                ZIndex="1"/>
+
+
+            <Button
+                Grid.Row="4"
+                Text=""
+                BackgroundColor="#444"
+                Padding="20"
+                CornerRadius="30"
+                WidthRequest="250"
+                FontSize="30"
+                IsEnabled="False"
+                TranslationY="5"
+                ZIndex="0"/>
+        </Grid>
+
+
+    </VerticalStackLayout>
+</ContentPage>

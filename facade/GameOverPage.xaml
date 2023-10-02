@@ -3,7 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="facade.GameOverPage"
              Title="#facade"
-             BackgroundColor="#333">
+             BackgroundColor="#333"
+             xmlns:local="clr-namespace:facade"
+             x:DataType="local:MainPageViewModel"
+             >
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
 
     <VerticalStackLayout>
         <Grid Padding="0" RowSpacing="80">
@@ -17,7 +23,7 @@
             
             <Label
                 x:Name="ResultLabel"
-                Text="{Binding Result}"
+                Text="You Lost!"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
                 FontSize="60"
@@ -33,7 +39,7 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     TextColor="White"
-                    Padding="4"/>
+                    Padding="10"/>
 
                 <Button
                     Text="#facade"
@@ -46,7 +52,7 @@
                     IsEnabled="False"/>
             </StackLayout>
 
-            
+
 
             <Button
                 Grid.Row="3"
@@ -58,20 +64,17 @@
                 WidthRequest="250"
                 FontSize="30"
                 IsEnabled="False"
-                ZIndex="1"/>
+                Command="{Binding ResetMainCommand}"
+                >
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="0, 10"/>
+                </Button.Shadow>
+            </Button>
 
 
-            <Button
-                Grid.Row="3"
-                Text=""
-                BackgroundColor="#444"
-                Padding="20"
-                CornerRadius="30"
-                WidthRequest="250"
-                FontSize="30"
-                IsEnabled="False"
-                TranslationY="5"
-                ZIndex="0"/>     
+               
         </Grid>
         
 

@@ -3,7 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="facade.YouWonPage"
              Title="#facade"
-             BackgroundColor="#facade">
+             BackgroundColor="#facade"
+             xmlns:local="clr-namespace:facade"
+             x:DataType="local:MainPageViewModel"
+             NavigationPage.HasBackButton="False"
+             
+             >
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
 
     <VerticalStackLayout>
         <Grid Padding="0" RowSpacing="80">
@@ -15,24 +23,37 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
+                <Label
+                    Grid.Row="0"
+                    Text="Secret Color:"
+                    TextColor="#222"
+                    FontSize="24"
+                    HorizontalTextAlignment="Center"
+                    Margin="20"
+                    />
+
+                <Label
+                    Grid.Row="1"
+                    Text="#facade"
+                    TextColor="#222"
+                    FontSize="48"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="End"/>
+
+            </Grid>
             <Label
-                Text="You Won!"
+                Text="Correct!"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
                 FontSize="60"
                 TextColor="#222"
                 Grid.Row="1"/>
-
-            <Label
-                Grid.Row="2"
-                Text="#facade"
-                TextColor="#222"
-                FontSize="48"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="End"/>
-
-
 
             <Button
                 Grid.Row="4"
@@ -43,21 +64,15 @@
                 TextColor="#000"
                 WidthRequest="250"
                 FontSize="30"
-                IsEnabled="False"
-                ZIndex="1"/>
+                IsEnabled="True"
+                Command="{Binding ResetMainCommand}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Offset="0, 5"/>
+                </Button.Shadow>
+            </Button>
 
-
-            <Button
-                Grid.Row="4"
-                Text=""
-                BackgroundColor="#444"
-                Padding="20"
-                CornerRadius="30"
-                WidthRequest="250"
-                FontSize="30"
-                IsEnabled="False"
-                TranslationY="5"
-                ZIndex="0"/>
         </Grid>
 
 

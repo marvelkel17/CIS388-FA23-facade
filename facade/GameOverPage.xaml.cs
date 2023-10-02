@@ -1,38 +1,12 @@
 ﻿namespace facade;
 
-[QueryProperty("DidWin", "DidWin")]
 public partial class GameOverPage : ContentPage
 {
-	private bool didWin;
-	public bool DidWin
-	{
-		get => didWin;
-		set
-		{
-			didWin = value;
-			if(didWin)
-			{
-				ResultLabel.Text = "You Won!";
-			}
-			else
-			{
-				ResultLabel.Text = "You Lost!";
-			}
-		}
-	}
+    public GameOverPage()
+    {
+        InitializeComponent();
 
-	//private string result;
-	//public string Result {
-	//	get => result;
-	//	set
-	//	{
-	//		result = value;
-	//           ResultLabel.Text = "You " + result;
-	//       }
-	//}
+        BindingContext = new MainPageViewModel();
+    }
 
-	public GameOverPage()
-	{
-		InitializeComponent();
-	}
 }

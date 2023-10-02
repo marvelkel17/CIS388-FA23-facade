@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -13,14 +14,25 @@ namespace facade
 		[ObservableProperty]
 		private string currentGuess;
 
-		public ObservableCollection<string> Guesses { get; set; }
+		[ObservableProperty]
+		private int guessNumber;
 
-		//public string SecretColor { get; set; }
 
-		public MainPageViewModel()
+        public ObservableCollection<ColorGuess> Guesses { get; set; }
+
+        //public string SecretColor { get; set; }
+
+        public MainPageViewModel()
 		{
 			secretColor = "FACADE";
 			currentGuess = "";
+
+            Guesses = new ObservableCollection<ColorGuess>();
+
+			guessNumber = 6;
+
+			
+
 		}
 
 
@@ -29,20 +41,60 @@ namespace facade
 		{
 			if( CurrentGuess.Length < 6)
 			{
-				CurrentGuess += letter;
-			}
+				CurrentGuess += letter.ToLower();
+            }
 		}
 
-		void Guess()
+
+		[RelayCommand]
+		void Delete()
 		{
-			// if correct, then go to game over (DidWin=true)
+			if (CurrentGuess.Length > 0)
+			{
+                CurrentGuess = CurrentGuess.Remove(CurrentGuess.Length - 1);
+            }
+            
+        }
 
-			// else if this is the 6th guess (and it's wrong)
-			// then go to game over (DidWin=false)
+		[RelayCommand]
+		async Task ResetMain()
+		{
+            await Shell.Current.GoToAsync($"..");
+        }
 
+		[RelayCommand]
+		async Task GuessAsync()
+		{
+			if (CurrentGuess.Length == 6)
+			{
+				if (CurrentGuess == SecretColor)
+				{
+                    await Shell.Current.GoToAsync($"{nameof(YouWonPage)}");
+                    Guesses.Clear();
+					CurrentGuess = "";
+                    GuessNumber = 6;
 
-			// Add this guess to the Guesses
-			Guesses.Add(CurrentGuess);
+                }
+				else if (CurrentGuess != SecretColor)
+				{
+					if (Guesses.Count != 5)
+					{
+                        Guesses.Add(new ColorGuess($"#{CurrentGuess.ToLower()}"));
+                        CurrentGuess = "";
+						GuessNumber = 6 - Guesses.Count;
+                    }
+					else
+					{
+                        await Shell.Current.GoToAsync($"{nameof(GameOverPage)}");
+                        Guesses.Clear();
+                        CurrentGuess = "";
+						GuessNumber = 6;
+                        
+                    }
+				}
+                
+                
+            }
 
 		}
 
